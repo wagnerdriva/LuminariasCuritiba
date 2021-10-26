@@ -7,17 +7,33 @@
 
 h1{
     font-family: 'Arvo', serif;
+    color: #FF8C00;
+    margin: 20px;
 }
 
 h2{
     font-family: 'Arvo', serif;
     font-style: italic;
+    margin: 20px;
+}
+
+p {
+    margin: 10px 20px 0px 20px;
+    font-size: 18px;
+}
+
+a {
+    font-style: normal;
+    color: #FF8C00;
+    text-decoration: none;
+    font-weight: 700;
 }
 
 .logo {
     display: flex; 
     align-items: center;
     font-size: 22px;
+    color: #FF8C00;
 }
 
 .logo img{
@@ -33,10 +49,6 @@ h2{
     margin: 10px 30px;
 }
 
-.tipografia p {
-    margin: 10px 0px 0px 0px;
-    font-size: 18px;
-}
 
 .avro {
     font-family: 'Arvo', serif;
@@ -58,6 +70,7 @@ h2{
 
 .paleta {
     display: flex;
+    height: 200px;
 }
 
 .paleta * {
