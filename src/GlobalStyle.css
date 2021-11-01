@@ -2,83 +2,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
-h1{
-    font-family: 'Arvo', serif;
-    color: #FF8C00;
-    margin: 20px;
+h1 {
+  font-family: 'Arvo', serif;
+  color: #ff8c00;
+  margin: 20px;
 }
 
-h2{
-    font-family: 'Arvo', serif;
-    font-style: italic;
-    margin: 20px;
+h2 {
+  font-family: 'Arvo', serif;
+  font-style: italic;
+  margin: 20px;
 }
 
 p {
-    margin: 10px 20px 0px 20px;
-    font-size: 18px;
+  margin: 10px 20px 0px 20px;
+  font-size: 18px;
 }
 
 a {
-    font-style: normal;
-    color: #FF8C00;
-    text-decoration: none;
-    font-weight: 700;
+  font-style: normal;
+  color: #ff8c00;
+  text-decoration: none;
+  font-weight: 700;
 }
 
 .logo {
-    display: flex; 
-    align-items: center;
-    font-size: 22px;
-    color: #FF8C00;
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  color: #ff8c00;
 }
 
-.logo img{
-    height: 38px;
-    margin: 0 10px;
+.logo img {
+  height: 38px;
+  margin: 0 10px;
 }
 
 .tipografia {
-    display: flex;
+  display: flex;
 }
 
 .tipografia div {
-    margin: 10px 30px;
+  margin: 10px 30px;
 }
 
-
 .avro {
-    font-family: 'Arvo', serif;
-    margin-top: 13px !important;
+  font-family: 'Arvo', serif;
+  margin-top: 13px !important;
 }
 
 .primeira {
-    background-color: #FF8C00;
+  background-color: #ff8c00;
 }
 
 .segunda {
-    background-color: #000000;
+  background-color: #000000;
 }
 
 .terceira {
-    background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
-
 .paleta {
-    display: flex;
-    height: 200px;
+  display: flex;
+  height: 200px;
 }
 
 .paleta * {
-    width: 100px;
-    height: 100px;
-    margin: 10px 40px;
+  width: 100px;
+  height: 100px;
+  margin: 10px 40px;
 }
 
 .paleta .square {
-    border: solid 1px #dcdcdc;
+  border: solid 1px #dcdcdc;
 }
