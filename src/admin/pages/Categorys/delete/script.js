@@ -12,12 +12,25 @@ function removeCategory() {
       categorys = JSON.parse(localStorage.getItem("Categorys"))
     }
 
+    let products = [];
 
-    categorys.map((category) => {
-      console.log(category);
+    if (localStorage.hasOwnProperty("Products")) {
+      products = JSON.parse(localStorage.getItem("Products"))
+    }
+
+
+    for(let i = 0; i < products.length; i += 1){
+      if (products[i].category == idName) {
+        console.log("Categoria em uso por produto.")
+        const errorElement = document.getElementById("error-message");
+        errorElement.innerHTML = "Categoria em uso por algum produto."
+        return
+      }
+    }
+
+    categorys.forEach((category) => {
       if (category.name == idName ||category.id == idName) {
         let index = categorys.indexOf(category);
-        console.log("entrou no if")
         category = categorys.splice(index, 1);
       }
     });
@@ -26,5 +39,22 @@ function removeCategory() {
   });
 }
 
+function getCategorys(){
+  let allCategorys = [];
 
+  if (localStorage.hasOwnProperty("Categorys")) {
+    allCategorys = JSON.parse(localStorage.getItem("Categorys"))
+  }
+
+  const select = document.getElementById('idName-input');
+
+  allCategorys.forEach(element => {
+    let opt = document.createElement('option');
+    opt.value = element.id;
+    opt.innerHTML = element.name;
+    select.appendChild(opt);
+  })
+}
+
+getCategorys();
 removeCategory();

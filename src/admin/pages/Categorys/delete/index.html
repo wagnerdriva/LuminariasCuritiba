@@ -4,12 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../../GlobalStyle.css">
+  <link rel="stylesheet" href="../../../styles.css">
   <title>Luminárias Curitiba</title>
 </head>
 <body>
+  <h1>Remoção Categorias</h1>
+  <div>
+    <span id="error-message"></span>
+  </div>
   <form id="update-form" action="" method="post">
-    <label>Id ou Nome da Categoria a ser removida: </label><br/>
-    <input id="idName-input" type="text"> <br/><br/>
+    <label>Nome da Categoria</label>
+    <select id="idName-input" type="selector"></select>
     <input id="submit-form" type="submit" value="Remover Categoria">
   </form>
   <script type="text/javascript" src="./script.js"></script>

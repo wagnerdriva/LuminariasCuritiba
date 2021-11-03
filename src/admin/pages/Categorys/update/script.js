@@ -27,5 +27,22 @@ function updateCategory() {
   });
 }
 
+function getCategorys(){
+  let allCategorys = [];
 
+  if (localStorage.hasOwnProperty("Categorys")) {
+    allCategorys = JSON.parse(localStorage.getItem("Categorys"))
+  }
+
+  const select = document.getElementById('id-input');
+
+  allCategorys.forEach(element => {
+    let opt = document.createElement('option');
+    opt.value = element.id;
+    opt.innerHTML = element.id;
+    select.appendChild(opt);
+  })
+}
+
+getCategorys();
 updateCategory();

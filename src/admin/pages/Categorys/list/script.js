@@ -1,14 +1,31 @@
-const request = localStorage.getItem("Categorys").replace(/{/g, '').replace(/"/g, '').replace(/\[/g, '').replace(/\]/g, '').replace(/,/g, '');
-let allCategorys = request.split("}");
-
+const request = localStorage.getItem("Categorys")
+let allCategorys = JSON.parse(request)
 console.log(allCategorys);
 
-allCategorys.map((category) => {
-  console.log(category);
+async function addCategoryLine(atributeName, atributeContent, div){
+  let textElement = document.createElement('p')
+  let strongElement = document.createElement('span')
+  let titlenode = document.createTextNode(`${atributeName}: `); 
+  let textnode = document.createTextNode(`${atributeContent}`);  
 
+  strongElement.classList = ["atribute-title"]
+  textElement.classList = ["atribute"]
+
+  strongElement.appendChild(titlenode)
+  textElement.appendChild(strongElement)
+  textElement.appendChild(textnode)
+  div.appendChild(textElement)
+} 
+
+allCategorys.map((category) => {
   let list = document.getElementById('category-list');
-  let element = document.createElement('p')
-  element.innerHTML = `${category}`;
-  list.appendChild(element);
+
+  let categoryInfoDiv = document.createElement('div')
+  categoryInfoDiv.classList = ["category"]
+
+  addCategoryLine("ID da Categoria", category.id, categoryInfoDiv)
+  addCategoryLine("Nome", category.name, categoryInfoDiv)
+  
+  list.appendChild(categoryInfoDiv);
 });
 

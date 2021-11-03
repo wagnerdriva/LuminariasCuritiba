@@ -25,5 +25,22 @@ function removeProduct() {
   });
 }
 
+function getProducts(){
+  let allProducts = [];
 
+  if (localStorage.hasOwnProperty("Products")) {
+    allProducts = JSON.parse(localStorage.getItem("Products"))
+  }
+
+  const select = document.getElementById('idName-input');
+
+  allProducts.forEach(element => {
+    let opt = document.createElement('option');
+    opt.value = element.id;
+    opt.innerHTML = element.name;
+    select.appendChild(opt);
+  })
+}
+
+getProducts();
 removeProduct();
