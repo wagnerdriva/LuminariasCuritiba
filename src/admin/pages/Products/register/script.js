@@ -1,66 +1,70 @@
-const form = document.getElementById("register-form");
+import { executeAPI } from "../../../backend.js";
 
-class Product {
-  constructor(code, category, name, description, price, img, weight){
-    this.id = 0;
-    this.code = code;
-    this.category = category;
-    this.name = name;
-    this.description = description;
-    this.price = price;
-    this.img = img;
-    this.weight = weight;
-  }
+function removeOptions(select) {
+	while (select.options.length > 0) select.remove(0);     
 }
 
+function refreshOptions(){
+	// Faz a requisição para a API buscando a listagem de categorias
+	executeAPI("categoria", "listar")
+	.then((result) => {
+		const categories = result.dados;
 
-function registerProducts() {
-  const submit = document.getElementById("submit-form");
-  submit.addEventListener('click', function(e) {
+		const select = document.getElementById('id-input');
+
+		removeOptions(select);
+
+		categories.forEach(element => {
+			let opt = document.createElement('option');
+			opt.value = element.id;
+			opt.innerHTML = element.nome;
+			select.appendChild(opt);
+		})
+	})    
+	.catch((error) => console.log(error))
+}
+
+function saveNewProduct(product){
+    executeAPI("produto", "inserir", product)
+        .then(result => {
+            console.log(result)
+            let span = document.getElementById("message");
+
+            if(result.status === "OK") span.innerHTML = "Produto criado com sucesso!"
+            else span.innerHTML = "Erro ao criar o produto!"
+        })
+        .catch(error => {
+            console.log(error)
+            
+            let span = document.getElementById("message");
+            span.innerHTML = "Erro ao criar o produto!"
+        })
+}
+
+refreshOptions();
+
+const submit = document.getElementById("submit-form");
+
+submit.addEventListener('click', function(e) {
     e.preventDefault();
 
-    let products = [];
-    const code = document.getElementById("code-input");
-    const category = document.getElementById("category-input");
-    const name = document.getElementById("name-input");
-    const description = document.getElementById("description-input");
-    const price = document.getElementById("price-input");
-    const img = document.getElementById("img-input");
-    const weight = document.getElementById("weight-input");
-
-
-    const newProduct = new Product(code.value, category.value, name.value, description.value, price.value, img.value, weight.value);
-
-    if (localStorage.hasOwnProperty("Products")) {
-      products = JSON.parse(localStorage.getItem("Products"))
+    const product = {
+        codigo: document.getElementById("code-input").value,
+        categoria: document.getElementById("id-input").value,
+        nome: document.getElementById("name-input").value,
+        descricao: document.getElementById("description-input").value,
+        preco: document.getElementById("price-input").value,
+        imagem: document.getElementById("img-input").value,
+        peso: document.getElementById("weight-input").value
     }
 
-    products.forEach((value) => {
-      newProduct.id = newProduct.id + 1;
-    });
+    saveNewProduct(product);
+});
 
-    products.push(newProduct);
+const img = document.getElementById("img-input");
+img.addEventListener('change', function(e) {
+    e.preventDefault();
 
-    localStorage.setItem('Products', JSON.stringify(products));
-  });
-}
-
-function getCategorys(){
-  let allCategorys = [];
-
-  if (localStorage.hasOwnProperty("Categorys")) {
-    allCategorys = JSON.parse(localStorage.getItem("Categorys"))
-  }
-
-  const select = document.getElementById('id-input');
-
-  allCategorys.forEach(element => {
-    let opt = document.createElement('option');
-    opt.value = element.id;
-    opt.innerHTML = element.name;
-    select.appendChild(opt);
-  })
-}
-
-getCategorys();
-registerProducts();
+    const showImage = document.getElementById("show-image");
+    showImage.src = img.value;
+})

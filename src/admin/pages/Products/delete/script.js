@@ -1,46 +1,54 @@
-const form = document.getElementById("update-form");
+import { executeAPI } from "../../../backend.js";
 
+function removeOptions(select) {
+	while (select.options.length > 0) select.remove(0);     
+}
 
-function removeProduct() {
-  const submit = document.getElementById("submit-form");
-  submit.addEventListener('click', function(e) {
-    e.preventDefault();
-    let products = [];
-    const idName = document.getElementById("idName-input").value;
+function refreshOptions(){
+	// Faz a requisição para a API buscando a listagem de categorias
+	executeAPI("produto", "listar")
+	.then((result) => {
+		const categories = result.dados;
 
-    if (localStorage.hasOwnProperty("Products")) {
-      products = JSON.parse(localStorage.getItem("Products"))
+		const select = document.getElementById('idName-input');
+
+		removeOptions(select)
+
+		categories.forEach(element => {
+			let opt = document.createElement('option');
+			opt.value = element.id;
+			opt.innerHTML = element.nome;
+			select.appendChild(opt);
+		})
+	})    
+	.catch((error) => console.log(error))
+}
+
+function removeProduct(id){
+    executeAPI("produto", "remover", { id })
+        .then(result => {
+            console.log(result)
+            let span = document.getElementById("message");
+
+            if(result.status === "OK") span.innerHTML = "Produto removido com sucesso!"
+            else span.innerHTML = "Erro ao remover o produto!"
+
+            refreshOptions();
+        })
+        .catch(error => {
+            console.log(error)
+            
+            let span = document.getElementById("message");
+            span.innerHTML = "Erro ao remover o produto!"
+        })
     }
 
+refreshOptions();
 
-    products.map((product) => {
-      console.log(product);
-      if (product.name == idName ||product.id == idName) {
-        let index = products.indexOf(product);
-        product = products.splice(index, 1);
-      }
-    });
+const submit = document.getElementById("submit-form");
+submit.addEventListener('click', function(e) {
+	e.preventDefault();
 
-    localStorage.setItem('Products', JSON.stringify(products));
-  });
-}
-
-function getProducts(){
-  let allProducts = [];
-
-  if (localStorage.hasOwnProperty("Products")) {
-    allProducts = JSON.parse(localStorage.getItem("Products"))
-  }
-
-  const select = document.getElementById('idName-input');
-
-  allProducts.forEach(element => {
-    let opt = document.createElement('option');
-    opt.value = element.id;
-    opt.innerHTML = element.name;
-    select.appendChild(opt);
-  })
-}
-
-getProducts();
-removeProduct();
+  const id = document.getElementById("idName-input").value;
+  removeProduct(id);
+})

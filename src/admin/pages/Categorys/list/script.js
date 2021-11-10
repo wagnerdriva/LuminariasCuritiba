@@ -1,31 +1,39 @@
-const request = localStorage.getItem("Categorys")
-let allCategorys = JSON.parse(request)
-console.log(allCategorys);
+import { executeAPI } from "../../../backend.js";
 
-async function addCategoryLine(atributeName, atributeContent, div){
-  let textElement = document.createElement('p')
-  let strongElement = document.createElement('span')
-  let titlenode = document.createTextNode(`${atributeName}: `); 
-  let textnode = document.createTextNode(`${atributeContent}`);  
+function addCategoryLine(atributeName, atributeContent, div){
+    let textElement = document.createElement('p')
+    let strongElement = document.createElement('span')
+    let titlenode = document.createTextNode(`${atributeName}: `); 
+    let textnode = document.createTextNode(`${atributeContent}`);  
 
-  strongElement.classList = ["atribute-title"]
-  textElement.classList = ["atribute"]
+    strongElement.classList = ["atribute-title"]
+    textElement.classList = ["atribute"]
 
-  strongElement.appendChild(titlenode)
-  textElement.appendChild(strongElement)
-  textElement.appendChild(textnode)
-  div.appendChild(textElement)
+    strongElement.appendChild(titlenode)
+    textElement.appendChild(strongElement)
+    textElement.appendChild(textnode)
+    div.appendChild(textElement)
 } 
 
-allCategorys.map((category) => {
-  let list = document.getElementById('category-list');
+function createCategoriesVisual(categories){
+    categories.map((category) => {
+        let list = document.getElementById('category-list');
+        let categoryInfoDiv = document.createElement('div')
+        categoryInfoDiv.classList = ["category"]
+      
+        addCategoryLine("ID da Categoria", category.id, categoryInfoDiv)
+        addCategoryLine("Nome", category.nome, categoryInfoDiv)
+        
+        list.appendChild(categoryInfoDiv);
+    });    
+}
 
-  let categoryInfoDiv = document.createElement('div')
-  categoryInfoDiv.classList = ["category"]
-
-  addCategoryLine("ID da Categoria", category.id, categoryInfoDiv)
-  addCategoryLine("Nome", category.name, categoryInfoDiv)
-  
-  list.appendChild(categoryInfoDiv);
-});
+// Faz a requisição para a API buscando a listagem de categorias
+executeAPI("categoria", "listar")
+    .then((result) => {
+        const categories = result.dados;
+        createCategoriesVisual(categories);
+    })    
+    .catch((error) => console.log(error))
+    
 

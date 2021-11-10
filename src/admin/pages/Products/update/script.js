@@ -1,137 +1,114 @@
-const form = document.getElementById("update-form");
+import { executeAPI } from "../../../backend.js";
 
+function fillProductInfo(select){
+    executeAPI("produto", "listar")
+        .then((result) => {
+            const products = result.dados;
+            let product = {};
 
-function updateProducts() {
-  const submit = document.getElementById("submit-form");
-  submit.addEventListener('click', function(e) {
+            products.forEach(element => {
+                if(element.id.toString() === select.value) product = element;
+            })
+
+            const code = document.getElementById("code-input");
+            code.value = product.codigo;
+            const name = document.getElementById("name-input");
+            name.value = product.nome;
+            const description = document.getElementById("description-input");
+            description.value = product.descricao;
+            const price = document.getElementById("price-input");
+            price.value = product.preco;
+            const img = document.getElementById("img-input");
+            img.value = product.imagem;
+            const showImage = document.getElementById("show-image");
+            showImage.src = product.imagem;
+          
+            const weight = document.getElementById("weight-input");
+            weight.value = product.peso;
+          
+            const category = document.getElementById("category-input");
+            category.value = product.categoria;
+        })    
+        .catch((error) => console.log(error))
+}
+
+function removeOptions(select) {
+	while (select.options.length > 0) select.remove(0);     
+}
+
+function refreshOptions(selectID, type){
+	executeAPI(type, "listar")
+        .then((result) => {
+            const options = result.dados;
+
+            const select = document.getElementById(selectID);
+
+            removeOptions(select);
+
+            options.forEach(element => {
+                let opt = document.createElement('option');
+                opt.value = element.id;
+                opt.innerHTML = element.nome;
+                select.appendChild(opt);
+            })
+
+            if(type === "produto"){
+                fillProductInfo(select, options);
+            }
+        })    
+        .catch((error) => console.log(error))
+}
+
+function updateProduct(product){
+    executeAPI("produto", "alterar", product)
+        .then(result => {
+            console.log(result)
+            let span = document.getElementById("message");
+
+            if(result.status === "OK") span.innerHTML = "Produto atualizado com sucesso!"
+            else span.innerHTML = "Erro ao atualizar o produto!"
+
+            refreshOptions("idCode", "produto");
+        })
+        .catch(error => {
+            console.log(error)
+            
+            let span = document.getElementById("message");
+            span.innerHTML = "Erro ao atualizar o produto!"
+        })
+}
+
+refreshOptions("category-input", "categoria");
+refreshOptions("idCode", "produto");
+
+const select = document.getElementById('idCode');
+select.addEventListener('click', function(e) {
     e.preventDefault();
-    let products = [];
+    fillProductInfo(select)
+})
 
-    const idCode = document.getElementById("idCode");
-
-    const code = document.getElementById("code-input");
-    const category = document.getElementById("category-input");
-    const name = document.getElementById("name-input");
-    const description = document.getElementById("description-input");
-    const price = document.getElementById("price-input");
-    const img = document.getElementById("img-input");
-    const weight = document.getElementById("weight-input");
-
-    if (localStorage.hasOwnProperty("Products")) {
-      products = JSON.parse(localStorage.getItem("Products"))
-    }
-
-    products.map((product) => {
-      if (product.id == idCode.value || product.code == idCode.value) {
-        console.log("entrou:" + product)
-        if (code.value) {
-          product.code = code.value;
-        }
-        if (category.value) {
-          product.category = category.value;
-        }
-        if (name.value) {
-          product.name = name.value;
-        }
-        if (description.value) {
-          product.description = description.value;
-        }
-        if (price.value) {
-          product.price = price.value;
-        }
-        if (img.value) {
-          product.img = img.value;
-        }
-        if (weight.value) {
-          product.weight = weight.value;
-        }
-      }
-    });
-
-    localStorage.setItem('Products', JSON.stringify(products));
-  });
-}
-
-function fillProductInfo(select, allProducts){
-  let product = {};
-  allProducts.forEach(element => {
-    if(element.id.toString() === select.value){
-      product = element
-    }
-  })
-
-  const code = document.getElementById("code-input");
-  code.value = product.code;
-  const name = document.getElementById("name-input");
-  name.value = product.name;
-  const description = document.getElementById("description-input");
-  description.value = product.description;
-  const price = document.getElementById("price-input");
-  price.value = product.price;
-  const img = document.getElementById("img-input");
-  img.value = product.img;
-  const showImage = document.getElementById("show-image");
-  showImage.src = product.img;
-
-  const weight = document.getElementById("weight-input");
-  weight.value = product.weight;
-
-  const category = document.getElementById("category-input");
-  category.value = product.category
-}
-
-function getCategorys(){
-  let allCategorys = [];
-
-  if (localStorage.hasOwnProperty("Categorys")) {
-    allCategorys = JSON.parse(localStorage.getItem("Categorys"))
-  }
-
-  const select = document.getElementById('category-input');
-
-  allCategorys.forEach(element => {
-    let opt = document.createElement('option');
-    opt.value = element.id;
-    opt.innerHTML = element.name;
-    select.appendChild(opt);
-  })
-}
-
-function getProducts(){
-  let allProducts = [];
-
-  if (localStorage.hasOwnProperty("Products")) {
-    allProducts = JSON.parse(localStorage.getItem("Products"))
-  }
-
-  const select = document.getElementById('idCode');
-
-  allProducts.forEach(element => {
-    let opt = document.createElement('option');
-    opt.value = element.id;
-    opt.innerHTML = element.name;
-    select.appendChild(opt);
-  })
-
-  fillProductInfo(select, allProducts)
-
-  select.addEventListener('click', function(e) {
-    e.preventDefault();
-
-    fillProductInfo(select, allProducts)
-  })
-
-  const img = document.getElementById("img-input");
-  
-  img.addEventListener('change', function(e) {
+const img = document.getElementById("img-input");
+img.addEventListener('change', function(e) {
     e.preventDefault();
     
     const showImage = document.getElementById("show-image");
     showImage.src = img.value;
-  })
+})
 
-}
+const submit = document.getElementById("submit-form");
+submit.addEventListener('click', function(e) {
+    e.preventDefault();
 
-getCategorys();
-getProducts();
-updateProducts();
+    let product = {
+        id: document.getElementById("idCode").value,
+        codigo: document.getElementById("code-input").value,
+        categoria: document.getElementById("category-input").value,
+        nome: document.getElementById("name-input").value,
+        descricao: document.getElementById("description-input").value,
+        preco: document.getElementById("price-input").value,
+        imagem: document.getElementById("img-input").value,
+        peso: document.getElementById("weight-input").value
+    };
+
+    updateProduct(product);
+});

@@ -1,34 +1,27 @@
-const form = document.getElementById("register-form");
+import { executeAPI } from "../../../backend.js";
 
-class Category {
-  constructor(name){
-    this.id = 0;
-    this.name = name;
-  }
+function saveNewCategory(category){
+    executeAPI("categoria", "inserir", category)
+        .then(result => {
+            console.log(result)
+            let span = document.getElementById("message");
+
+            if(result.status === "OK") span.innerHTML = "Categoria criada com sucesso!"
+            else span.innerHTML = "Erro ao criar a categoria!"
+        })
+        .catch(error => {
+            console.log(error)
+            
+            let span = document.getElementById("message");
+            span.innerHTML = "Erro ao criar a categoria!"
+        })
 }
 
-
-function registerCategory() {
-  const submit = document.getElementById("submit-form");
-  submit.addEventListener('click', function(e) {
+const submit = document.getElementById("submit-form");
+submit.addEventListener('click', function(e) {
     e.preventDefault();
-    let categorys = [];
+
     const name = document.getElementById("name-input");
-    const newCategory = new Category(name.value);
+    saveNewCategory({nome: name.value});
+});
 
-    if (localStorage.hasOwnProperty("Categorys")) {
-      categorys = JSON.parse(localStorage.getItem("Categorys"))
-    }
-
-    categorys.forEach((value) => {
-      newCategory.id = newCategory.id + 1;
-    });
-
-    categorys.push(newCategory);
-
-    localStorage.setItem('Categorys', JSON.stringify(categorys));
-  });
-}
-
-
-registerCategory();
