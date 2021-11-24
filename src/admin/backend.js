@@ -1,10 +1,10 @@
 function buildRequest(command, option, fields){
     if(fields){
         const stringFields = new URLSearchParams(fields).toString();
-        return `http://loja.buiar.com/?key=aula&f=json&c=${command}&t=${option}&${stringFields}`;
+        return `http://loja.buiar.com/?key=q3hfZsQuaw&f=json&c=${command}&t=${option}&${stringFields}`;
     }
     else
-        return `http://loja.buiar.com/?key=aula&f=json&c=${command}&t=${option}`;
+        return `http://loja.buiar.com/?key=q3hfZsQuaw&f=json&c=${command}&t=${option}`;
 }
 
 export async function executeAPI(command, option, fields){

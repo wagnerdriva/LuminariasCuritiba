@@ -1,0 +1,30 @@
+.product {
+    display: flex;
+    margin: 40px;
+    padding: 10px;
+    width: 90vw;
+    border: solid 2px #333;
+}
+
+.product-info {
+    align-items: center;
+    width: 90vw;
+}
+
+.atribute {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: #ff8c00;
+    padding-top: 8px;
+    float: left;
+}
+
+.product-info  img {
+    float: right;
+    height: 50px;
+    margin: 8px;
+}
+
+.qtd {
+    float: right;
+}

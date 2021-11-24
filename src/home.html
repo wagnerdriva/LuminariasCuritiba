@@ -1,30 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luminárias Curitiba</title>
     <link rel="stylesheet" href="./GlobalStyle.css">
+    <link rel="stylesheet" href="./css/home.css">
 </head>
+
 <body>
-    <div class="logo">
-        <img src="../assets/icone.jpg" alt="icone">
-        <h1>LUMINÁRIAS CURITIBA</h1>
-        <h4> <a href="./admin/admin.html">Admin</a></h4>
-    </div>
-
-    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
-
-    <h2>Menu de opções</h2>
-    <ul>
-        <li><a href="./home.html">Home</a></li>
-        <li><a href="./Pages/produtos.html">Produtos</a></li>
-        <li><a href="./Pages/sobre.html">Sobre</a></li>
-        <li><a href="./Pages/contatos.html">Contatos</a></li>
-        <li><a href="./Pages/pedidos.html">Pedidos</a></li>
-        <li><a href="./Pages/adm.html">Administração</a></li>
-        <li><a href="./Pages/Design.html">Design</a></li>
+    
+    <ul class="navbar">
+        <li style="float:right">
+            <a href="./Pages/carrinho.html" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img class="carrinho" src="../assets/carrinho.png" alt="carrinho">
+            </a>
+        </li>
+        <li style="float:right"><a href="./admin/admin.html">Administração</a></li>
+        <li style="float:right"><a href="./Pages/Design.html">Design</a></li>
+        <li style="float:right"><a href="./Pages/sobre.html">Sobre</a></li>
+        <li style="float:right"><a href="./Pages/contatos.html">Contatos</a></li>
+        <li style="float:right"><a class="active" href="./home.html">Home</a></li>
+        
+        
+        <li>
+            <div class="logo">
+                <img src="../assets/icone.jpg" alt="icone">
+                <h1>LUMINÁRIAS CURITIBA</h1>
+            </div>
+        </li>
     </ul>
+    
+    <div style="display: flex;">
+        <div id="category-list"></div>
+        <div id="product-list"></div>
+    </div>
+    
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+
+            let carrinho = localStorage.getItem("carrinho")
+
+            if(carrinho) carrinho = JSON.parse(carrinho);
+            else carrinho = []
+
+            carrinho.push(ev.dataTransfer.getData("text"))
+
+            localStorage.setItem("carrinho", JSON.stringify(carrinho))
+        }
+    </script>
+    <script type="module" src="./scripts/home.js"></script>
 </body>
 </html>
