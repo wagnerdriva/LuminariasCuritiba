@@ -53,5 +53,3 @@ function finalizarCheckout(){
         alert("Entre com o numero da sua residencia")
     }
 }
-
-{"nome":"Giovanni","cpf":"168.952.387-51","cep":"80010-150","rua":"Rua Monsenhor Celso","numero":"80","complemento":"rua sem saída","bairro":"Centro","cidade":"Curitiba","estado":"PR"}
