@@ -4,10 +4,16 @@ function buildCEPRequest(cep){
 }
 
 
-function personalInfo() {
+async function personalInfo() {
     if (document.getElementById('cpf').checkValidity() && document.getElementById('nome').checkValidity() && document.getElementById('cep').checkValidity()){
-        getCEP()
-      } 
+        let cepInfo = await getCEP();
+        if (!cepInfo.erro) {
+            console.log("deu boa")
+        }
+        else {
+            console.log("deu ruim")
+        }
+    } 
 }
 
 async function getCEP (url) {
