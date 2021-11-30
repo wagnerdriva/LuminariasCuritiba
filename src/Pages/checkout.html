@@ -38,11 +38,11 @@
     </form> 
 
     <div id="cepdiv" hidden>
-        <form>
+        <form onsubmit="return false;">
         <label for="flogradouro">Logradouro:</label><br>
         <input type="text" id="rua" name="flogradouro" readonly><br>
         <label for="fnumero">Numero:</label><br>
-        <input type="text" id="numero" name="fnumero" pattern="[0-9]" required><br>
+        <input type="text" id="numero" name="fnumero" pattern="[0-9]+" required><br>
         <label for="fcomplemento">Complemento:</label><br>
         <input type="text" id="complemento" name="fcomplemento"><br>
         <label for="fbairro">Bairro:</label><br>
@@ -51,7 +51,7 @@
         <input type="text" id="cidade" name="fcidade" readonly><br>
         <label for="festado">Estado:</label><br>
         <input type="text" id="estado" name="festado" readonly><br>
-        <input id="enviar2" type="submit" onclick="finalizarCheckout()" value="Finalizar checkout">
+        <input type="submit" onclick="finalizarCheckout()" value="Finalizar checkout">
     </form>
 </div>
       <script type="text/javascript" src="../scripts/checkout.js"></script>  

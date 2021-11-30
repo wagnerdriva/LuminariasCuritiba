@@ -32,26 +32,11 @@ async function getCEP (url) {
         return data;
 }
 
-
-
-//   {
-//     "cep": "80210-000",
-//     "logradouro": "Avenida Prefeito Omar Sabbag",
-//     "complemento": "",
-//     "bairro": "Jardim Botânico",
-//     "localidade": "Curitiba",
-//     "uf": "PR",
-//     "ibge": "4106902",
-//     "gia": "",
-//     "ddd": "41",
-//     "siafi": "7535"
-//   }
-
-// document.getElementById('pessoal').addEventListener('click', function() {
-//     if (document.getElementById('cpf').checkValidity() && document.getElementById('nome').checkValidity()) {
-//       window.alert('valid station name');
-//       // addMessage();
-//     } else {
-//       window.alert('invalid station name!');
-//     }
-//   });
+function finalizarCheckout(){
+    if (document.getElementById('numero').checkValidity()) {
+        alert("Tudo certo")
+    }
+    else {
+        alert("Entre com o numero da sua residencia")
+    }
+}
