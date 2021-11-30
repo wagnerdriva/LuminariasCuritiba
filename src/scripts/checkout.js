@@ -34,9 +34,24 @@ async function getCEP (url) {
 
 function finalizarCheckout(){
     if (document.getElementById('numero').checkValidity()) {
+        checkout = {
+            "nome": document.getElementById('nome').value,
+            "cpf": document.getElementById('cpf').value,
+            "cep": document.getElementById('cep').value,
+            "rua": document.getElementById('rua').value,
+            "numero": document.getElementById('numero').value,
+            "complemento": document.getElementById('complemento').value,
+            "bairro": document.getElementById('bairro').value,
+            "cidade": document.getElementById('cidade').value,
+            "estado": document.getElementById('estado').value,
+        }
+
+        localStorage.setItem("checkout", JSON.stringify(checkout))
         alert("Tudo certo")
     }
     else {
         alert("Entre com o numero da sua residencia")
     }
 }
+
+{"nome":"Giovanni","cpf":"168.952.387-51","cep":"80010-150","rua":"Rua Monsenhor Celso","numero":"80","complemento":"rua sem saída","bairro":"Centro","cidade":"Curitiba","estado":"PR"}
