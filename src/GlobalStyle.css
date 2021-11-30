@@ -23,6 +23,20 @@ p {
   font-size: 18px;
 }
 
+form {
+  margin: 10px 20px 0px 20px;
+  font-size: 18px;
+}
+
+input {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ff8c00;
+  border-radius: 4px;
+}
+
 a {
   font-style: normal;
   color: #ff8c00;

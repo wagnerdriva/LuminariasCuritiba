@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../GlobalStyle.css">
+    <link rel="stylesheet" href="../css/checkout.css">
+    <title>Contatos</title>
+</head>
+<body>
+    <ul class="navbar">
+        <li style="float:right"><a href="./Pages/carrinho.html"><img class="carrinho" src="../../assets/carrinho.png" alt="carrinho"></a></li>
+        <li style="float:right"><a href="../admin/admin.html">Administração</a></li>
+        <li style="float:right"><a href="Design.html">Design</a></li>
+        <li style="float:right"><a href="sobre.html">Sobre</a></li>
+        <li style="float:right"><a class="active" href="contatos.html">Contatos</a></li>
+        <li style="float:right"><a href="../home.html">Home</a></li>
+
+        <li>
+            <div class="logo">
+                <img src="../../assets/icone.jpg" alt="icone">
+                <h1>LUMINÁRIAS CURITIBA</h1>
+            </div>
+        </li>
+    </ul>
+
+    <h1>Checkout</h1>
+    <p>Informações Pessoais</p> <br>
+    <form onsubmit="return false;">
+        <label for="fnome">Nome:</label><br>
+        <input type="text" id="nome" name="fnome" pattern="[A-Za-z]{3,}" placeholder="Joao da Silva" required><br>
+        <label for="fcpf">CPF:</label><br>
+        <input type="text" id="cpf" name="fcpf" placeholder="123.456.789-10" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" required><br>
+        <label for="fcep">CEP:</label><br>
+        <input type="text" id="cep" name="fcep" placeholder="12345-678" pattern="\d{5}-?\d{3}" required><br>
+        <input type="submit" onclick="personalInfo()" value="OK">
+    </form> 
+
+    <div hidden>
+    <p id="rua">kkkk</p>
+    <p id="bairro">kkkk</p>
+    <p id="estado">kkk</p>
+</div>
+      <script type="text/javascript" src="../scripts/checkout.js"></script>  
+</body>
+</html>
