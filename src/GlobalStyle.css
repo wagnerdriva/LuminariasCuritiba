@@ -37,6 +37,24 @@ input {
   border-radius: 4px;
 }
 
+input {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ff8c00;
+}
+
+input[type=submit] {
+  border: 2px solid #ff8c00 !important;
+  background-color: #FF8C00 !important;
+}
+
+input:read-only { 
+  border: 2px solid grey;
+  background-color: lightgrey;
+}
+
 a {
   font-style: normal;
   color: #ff8c00;

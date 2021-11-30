@@ -8,10 +8,18 @@ async function personalInfo() {
     if (document.getElementById('cpf').checkValidity() && document.getElementById('nome').checkValidity() && document.getElementById('cep').checkValidity()){
         let cepInfo = await getCEP();
         if (!cepInfo.erro) {
-            console.log("deu boa")
+            document.getElementById('rua').value = cepInfo.logradouro
+            document.getElementById('bairro').value = cepInfo.bairro
+            document.getElementById('cidade').value = cepInfo.localidade
+            document.getElementById('estado').value = cepInfo.uf
+            document.getElementById('cepdiv').removeAttribute("hidden")
+            document.getElementById('nome').setAttribute("readonly", true);
+            document.getElementById('cpf').setAttribute("readonly", true);
+            document.getElementById('cep').setAttribute("readonly", true);
+            document.getElementById('enviar1').setAttribute("hidden", true);
         }
         else {
-            console.log("deu ruim")
+            alert("CEP não encontrado")
         }
     } 
 }
