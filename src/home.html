@@ -52,7 +52,20 @@
             if(carrinho) carrinho = JSON.parse(carrinho);
             else carrinho = []
 
-            carrinho.push(ev.dataTransfer.getData("text"))
+            const produto = {
+                id: ev.dataTransfer.getData("text"),
+                qtd: 1,
+            }
+
+            let alreadyOnCart = false;
+            carrinho.forEach(element => {
+                if(element.id === produto.id) {
+                    element.qtd += 1;
+                    alreadyOnCart = true;
+                }
+            })
+
+            if(!alreadyOnCart) carrinho.push(produto)
 
             localStorage.setItem("carrinho", JSON.stringify(carrinho))
         }

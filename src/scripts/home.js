@@ -50,20 +50,22 @@ function listProducts(categoryID) {
                 let productInfoDiv = document.createElement('div')
                 productInfoDiv.classList = ["product-info"]
 
-                addProductLine("Nome", product.nome, productInfoDiv)
-                addProductLine("Descrição", product.descricao, productInfoDiv)
-                addProductLine("Preço", parseFloat(product.preco).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }), productInfoDiv)
-                addProductLine("Peso (Kg)", product.peso, productInfoDiv)
+                addProductLine("Nome", product.nome, productInfoDiv);
+                addProductLine("Descrição", product.descricao, productInfoDiv);
+                addProductLine("Preço", parseFloat(product.preco).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }), productInfoDiv);
+                addProductLine("Peso (Kg)", product.peso, productInfoDiv);
 
 
-                let productDiv = document.createElement('div')
-                productDiv.classList = ["product"]
+                let productDiv = document.createElement('div');
+                productDiv.classList = ["product"];
+                productDiv.id = product.id;
+                productDiv.draggable = true;
+                productDiv.ondragstart = drag;
 
 
                 let imageElement = document.createElement('img')
                 imageElement.src = product.imagem
-                imageElement.draggable=true
-                imageElement.ondragstart=drag
+                imageElement.draggable = false;
 
                 productDiv.appendChild(productInfoDiv)
                 productDiv.appendChild(imageElement)

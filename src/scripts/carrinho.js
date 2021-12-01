@@ -13,20 +13,27 @@ async function addProductLine(atributeName, atributeContent, div) {
 function createProductVisual(products, carrinho) {
     products.map((product) => {
         for(let element of carrinho){
-            if (product.imagem === element) {
+            if (product.id === element.id) {
                 console.log(product.nome)
                 let list = document.getElementById('product-list');
                 let productInfoDiv = document.createElement('div')
                 productInfoDiv.classList = ["product-info"]
     
                 addProductLine("", product.nome, productInfoDiv)
-                addProductLine("", parseFloat(product.preco).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }), productInfoDiv)
-    
+                
                 let textElement = document.createElement('p')
-                let textnode = document.createTextNode(`${1}`);
+                let textnode = document.createTextNode(`${element.qtd}`);
                 textElement.classList = ["atribute qtd"]
                 textElement.appendChild(textnode)
                 productInfoDiv.appendChild(textElement)
+
+                textElement = document.createElement('p')
+                textnode = document.createTextNode(`${parseFloat(product.preco).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`);
+                textElement.classList = ["atribute qtd"]
+                textElement.appendChild(textnode)
+                productInfoDiv.appendChild(textElement)
+
+    
 
                 let productDiv = document.createElement('div')
                 productDiv.classList = ["product"]
