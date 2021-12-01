@@ -45,7 +45,6 @@
         pattern="[A-Za-z]{3,}"
         placeholder="Joao da Silva"
         required
-        value="Giovanni"
       /><br />
       <label for="fcpf">CPF:</label><br />
       <input
@@ -55,7 +54,6 @@
         placeholder="12345678910"
         pattern="\d{11}"
         required
-        value="12345678910"
       /><br />
       <label for="fcep">CEP:</label><br />
       <input
@@ -65,7 +63,6 @@
         placeholder="12345678"
         pattern="\d{8}"
         required
-        value="80010150"
       /><br />
       <input id="enviar1" type="submit" onclick="personalInfo()" value="OK" />
     </form>
@@ -81,7 +78,6 @@
           name="fnumero"
           pattern="[0-9]+"
           required
-          value="80"
         /><br />
         <label for="fcomplemento">Complemento:</label><br />
         <input type="text" id="complemento" name="fcomplemento" /><br />
@@ -91,14 +87,12 @@
         <input type="text" id="cidade" name="fcidade" readonly /><br />
         <label for="festado">Estado:</label><br />
         <input type="text" id="estado" name="festado" readonly /><br />
-        <a href="./finalizacao.html">
-          <input
-            type="button"
-            onclick="finalizarCheckout()"
-            value="Finalizar checkout"
-            style="background-color: #ff8c00; border: 2px solid #ff8c00"
-          />
-        </a>
+        <input
+          type="submit"
+          onclick="finalizarCheckout()"
+          value="Finalizar checkout"
+          style="background-color: #ff8c00; border: 2px solid #ff8c00"
+        />
       </form>
     </div>
     <script type="text/javascript" src="../scripts/checkout.js"></script>

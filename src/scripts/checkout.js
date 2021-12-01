@@ -49,6 +49,8 @@ function finalizarCheckout() {
     };
 
     localStorage.setItem("checkout", JSON.stringify(checkout));
+
+    window.location.href = "./finalizacao.html";
   } else {
     alert("Entre com o numero da sua residencia");
   }
