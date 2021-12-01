@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../GlobalStyle.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../GlobalStyle.css" />
     <!-- <link rel="stylesheet" href="../css/checkout.css"> -->
     <title>Contatos</title>
-</head>
-<body>
+  </head>
+  <body>
     <ul class="navbar">
-        <li style="float:right"><a href="./carrinho.html"><img class="carrinho" src="../../assets/carrinho.png" alt="carrinho"></a></li>
-        <li style="float:right"><a href="../admin/admin.html">Administração</a></li>
-        <li style="float:right"><a href="Design.html">Design</a></li>
-        <li style="float:right"><a href="sobre.html">Sobre</a></li>
-        <li style="float:right"><a class="active" href="contatos.html">Contatos</a></li>
-        <li style="float:right"><a href="../home.html">Home</a></li>
+      <li style="float: right">
+        <a href="./carrinho.html"
+          ><img class="carrinho" src="../../assets/carrinho.png" alt="carrinho"
+        /></a>
+      </li>
+      <li style="float: right">
+        <a href="../admin/admin.html">Administração</a>
+      </li>
+      <li style="float: right"><a href="Design.html">Design</a></li>
+      <li style="float: right"><a href="sobre.html">Sobre</a></li>
+      <li style="float: right">
+        <a class="active" href="contatos.html">Contatos</a>
+      </li>
+      <li style="float: right"><a href="../home.html">Home</a></li>
 
-        <li>
-            <div class="logo">
-                <img src="../../assets/icone.jpg" alt="icone">
-                <h1>LUMINÁRIAS CURITIBA</h1>
-            </div>
-        </li>
+      <li>
+        <div class="logo">
+          <img src="../../assets/icone.jpg" alt="icone" />
+          <h1>LUMINÁRIAS CURITIBA</h1>
+        </div>
+      </li>
     </ul>
 
     <h1>Confirmação de Pedido</h1>
-    <h2>Informações Pessoais</h2> <br>
+    <h2>Informações Pessoais</h2>
+    <br />
     <p id="nome"></p>
     <p id="cpf"></p>
     <p id="cep"></p>
@@ -36,14 +45,18 @@
     <p id="bairro"></p>
     <p id="cidade"></p>
     <p id="estado"></p>
-    
+
     <h2>Itens</h2>
-    <div style="display: flex;">
-        <div id="product-list"></div>
+    <div style="display: flex">
+      <div id="product-list"></div>
     </div>
 
-    <button ><a id="confirmar" href="./realizado.html" style="color: white;">Confirmar pedido</a></button>
-    
-      <script type="module"src="../scripts/finalizacao.js"></script>  
-</body>
+    <button>
+      <a id="confirmar" href="./realizado.html" style="color: white"
+        >Confirmar pedido</a
+      >
+    </button>
+
+    <script type="module" src="../scripts/finalizacao.js"></script>
+  </body>
 </html>

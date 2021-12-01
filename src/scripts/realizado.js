@@ -11,9 +11,11 @@ document.getElementById("pedido").innerHTML =
 
 let fields = `id=${pedido.id}`;
 
-executeAPI("boleto", "listar", fields)
+executeAPI("boleto", "listar", fields, false)
   .then((result) => {
     console.log(result);
+    var wnd = window.open("about:blank", "", "_blank");
+    wnd.document.write(result);
     // document.getElementById('boleto').setAttribute("href", "xyz.php");
   })
   .catch((error) => console.log(error));
