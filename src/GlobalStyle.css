@@ -149,3 +149,13 @@ a {
 .carrinho{
   height: 18px;
 }
+
+button {
+  background-color: #ff8c00;
+  font-size: large;
+  padding: 12px 20px;
+  margin: 20px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ff8c00;
+  border-radius: 4px;
+}

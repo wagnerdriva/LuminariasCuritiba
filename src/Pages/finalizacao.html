@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../GlobalStyle.css">
+    <!-- <link rel="stylesheet" href="../css/checkout.css"> -->
     <title>Contatos</title>
 </head>
 <body>
@@ -24,21 +25,25 @@
         </li>
     </ul>
 
-    <h1>Contatos</h1>
+    <h1>Confirmação de Pedido</h1>
+    <h2>Informações Pessoais</h2> <br>
+    <p id="nome"></p>
+    <p id="cpf"></p>
+    <p id="cep"></p>
+    <p id="rua"></p>
+    <p id="numero"></p>
+    <p id="complemento"></p>
+    <p id="bairro"></p>
+    <p id="cidade"></p>
+    <p id="estado"></p>
+    
+    <h2>Itens</h2>
+    <div style="display: flex;">
+        <div id="product-list"></div>
+    </div>
 
-    <p>CURITIBA ILUMINACAO LTDA <br>
-        CNPJ: 99.999.999/0001-00<br>
-        <br>
-        Rua Silva Jardim, 790 | Centro | Curitiba | PR<br>
-        CEP 80010-150<br>
-        <br> 
-        (41) 9 9999-8877  |  (21) 9 8888-6644 <br>
-        Whatsapp: (41) 96677-9922<br>
-        E-mail: contato@luminariascuritiba.com.br<br>
-        <br>
-        Atendimento: <br>
-        Segunda a sexta-feira, das 8:00 às 18:00.<br>
-        Sábado das 8:00 às 12:00</p>
-        <br>
+    <button ><a id="confirmar" href="./realizado.html" style="color: white;">Confirmar pedido</a></button>
+    
+      <script type="module"src="../scripts/finalizacao.js"></script>  
 </body>
 </html>

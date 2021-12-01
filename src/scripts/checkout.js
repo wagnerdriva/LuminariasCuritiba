@@ -47,7 +47,6 @@ function finalizarCheckout(){
         }
 
         localStorage.setItem("checkout", JSON.stringify(checkout))
-        alert("Tudo certo")
     }
     else {
         alert("Entre com o numero da sua residencia")

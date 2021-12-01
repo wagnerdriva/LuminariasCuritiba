@@ -1,6 +1,7 @@
 function buildRequest(command, option, fields){
     if(fields){
         const stringFields = new URLSearchParams(fields).toString();
+        console.log(stringFields)
         return `http://loja.buiar.com/?key=q3hfZsQuaw&f=json&c=${command}&t=${option}&${stringFields}`;
     }
     else

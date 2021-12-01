@@ -60,3 +60,8 @@ function main(){
 }
 
 main()
+
+
+// remover depois, foi pq meu drag and drop nao rolou
+localStorage.setItem('carrinho', JSON.stringify([{"id":"931","qtd":1},{"id":"932","qtd":1},{"id":"821","qtd":4},{"id":"907","qtd":2},{"id":"930","qtd":4}]));
+console.log("ta no carrinho")
