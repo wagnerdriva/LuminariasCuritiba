@@ -1,83 +1,81 @@
 import { executeAPI } from "../../../backend.js";
 
 function removeOptions(select) {
-	while (select.options.length > 0) select.remove(0);     
+  while (select.options.length > 0) select.remove(0);
 }
 
-function refreshOptions(){
-	// Faz a requisição para a API buscando a listagem de categorias
-	executeAPI("categoria", "listar")
-	.then((result) => {
-		const categories = result.dados;
+function refreshOptions() {
+  // Faz a requisição para a API buscando a listagem de categorias
+  executeAPI("categoria", "listar")
+    .then((result) => {
+      const categories = result.dados;
 
-		const select = document.getElementById('idName-input');
+      const select = document.getElementById("idName-input");
 
-		removeOptions(select)
+      removeOptions(select);
 
-		categories.forEach(element => {
-			let opt = document.createElement('option');
-			opt.value = element.id;
-			opt.innerHTML = element.nome;
-			select.appendChild(opt);
-		})
-	})    
-	.catch((error) => console.log(error))
+      categories.forEach((element) => {
+        let opt = document.createElement("option");
+        opt.value = element.id;
+        opt.innerHTML = element.nome;
+        select.appendChild(opt);
+      });
+    })
+    .catch((error) => console.log(error));
 }
 
-async function getProducts(){
-	try {
-		const request = await executeAPI("produto", "listar");
-		return request.dados;
-	} catch (error) {
-		return [];
-	}
+async function getProducts() {
+  try {
+    const request = await executeAPI("produto", "listar");
+    return request.dados;
+  } catch (error) {
+    return [];
+  }
 }
 
-async function isCategoryInUse(categoryID){
-	const products = await getProducts();
+async function isCategoryInUse(categoryID) {
+  const products = await getProducts();
 
-	for(let i = 0; i < products.length; i += 1)
-		if (products[i].categoria === categoryID) return true;
+  for (let i = 0; i < products.length; i += 1)
+    if (products[i].categoria === categoryID) return true;
 
-	return false;
+  return false;
 }
 
-function removeCategory(id){
-    executeAPI("categoria", "remover", { id })
-        .then(result => {
-            console.log(result)
-            let span = document.getElementById("message");
+function removeCategory(id) {
+  executeAPI("categoria", "remover", { id })
+    .then((result) => {
+      console.log(result);
+      let span = document.getElementById("message");
 
-            if(result.status === "OK") span.innerHTML = "Categoria removida com sucesso!"
-            else span.innerHTML = "Erro ao remover a categoria!"
+      if (result.status === "OK")
+        span.innerHTML = "Categoria removida com sucesso!";
+      else span.innerHTML = "Erro ao remover a categoria!";
 
-			refreshOptions();
-        })
-        .catch(error => {
-            console.log(error)
-            
-            let span = document.getElementById("message");
-            span.innerHTML = "Erro ao remover a categoria!"
-        })
+      refreshOptions();
+    })
+    .catch((error) => {
+      console.log(error);
+
+      let span = document.getElementById("message");
+      span.innerHTML = "Erro ao remover a categoria!";
+    });
 }
-
-
 
 refreshOptions();
 
 const submit = document.getElementById("submit-form");
-submit.addEventListener('click', async function(e) {
-	e.preventDefault();
+submit.addEventListener("click", async function (e) {
+  e.preventDefault();
 
-	const id = document.getElementById("idName-input").value;
+  const id = document.getElementById("idName-input").value;
 
-	if(!(await isCategoryInUse(id))) removeCategory(id);
-	else {
-		let span = document.getElementById("message");
-        span.innerHTML = "Erro ao remover a categoria! Ela esta sendo utilizada."
-	}
-})
-
+  if (!(await isCategoryInUse(id))) removeCategory(id);
+  else {
+    let span = document.getElementById("message");
+    span.innerHTML = "Erro ao remover a categoria! Ela esta sendo utilizada.";
+  }
+});
 
 // function removeCategory() {
 //   const submit = document.getElementById("submit-form");
@@ -95,7 +93,6 @@ submit.addEventListener('click', async function(e) {
 //     if (localStorage.hasOwnProperty("Products")) {
 //       products = JSON.parse(localStorage.getItem("Products"))
 //     }
-
 
 //     for(let i = 0; i < products.length; i += 1){
 //       if (products[i].category == idName) {

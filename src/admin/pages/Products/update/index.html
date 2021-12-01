@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../../../GlobalStyle.css">
-  <link rel="stylesheet" href="../../../styles.css">
-  <title>Luminárias Curitiba</title>
-</head>
-<body>
-  <h1>Atualização de Produtos</h1>
-  <form id="update-form" action="" method="post">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../../GlobalStyle.css" />
+    <link rel="stylesheet" href="../../../styles.css" />
+    <title>Luminárias Curitiba</title>
+  </head>
+  <body>
+    <h1>Atualização de Produtos</h1>
+    <form id="update-form" action="" method="post">
+      <label>ID do Produto: </label>
+      <select id="idCode" type="selector"></select>
 
-    <label>ID do Produto: </label>
-    <select id="idCode" type="selector"></select>
+      <label>Codigo</label>
+      <input id="code-input" type="text" /> <br />
+      <label>Categoria</label>
+      <select id="category-input" type="selector"></select>
+      <label>Nome</label>
+      <input id="name-input" type="text" />
+      <label>Descrição</label>
+      <input id="description-input" type="text" />
+      <label>Preço</label>
+      <input id="price-input" type="text" />
+      <label>Imagem</label>
+      <input id="img-input" type="text" />
+      <img id="show-image" src="" />
+      <label>Peso</label>
+      <input id="weight-input" type="text" />
 
-
-    <label>Codigo</label>
-    <input id="code-input" type="text"> <br/>
-    <label>Categoria</label>
-    <select id="category-input" type="selector"></select>
-    <label>Nome</label>
-    <input id="name-input" type="text"> 
-    <label>Descrição</label>
-    <input id="description-input" type="text"> 
-    <label>Preço</label>
-    <input id="price-input" type="text"> 
-    <label>Imagem</label>
-    <input id="img-input" type="text"> 
-    <img id="show-image" src="">
-    <label>Peso</label>
-    <input id="weight-input" type="text"> 
-    
-    <input id="submit-form" type="submit" value="Atualizar Produto">
-  </form>
-  <p id="message"></p>
-  <script type="module" src="./script.js"></script>
-</body>
-</html> 
+      <input id="submit-form" type="submit" value="Atualizar Produto" />
+    </form>
+    <p id="message"></p>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

@@ -1,75 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Luminárias Curitiba</title>
-    <link rel="stylesheet" href="./GlobalStyle.css">
-    <link rel="stylesheet" href="./css/home.css">
-</head>
+    <link rel="stylesheet" href="./GlobalStyle.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+  </head>
 
-<body>
-    
+  <body>
     <ul class="navbar">
-        <li style="float:right">
-            <a href="./Pages/carrinho.html" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <img class="carrinho" src="../assets/carrinho.png" alt="carrinho">
-            </a>
-        </li>
-        <li style="float:right"><a href="./admin/admin.html">Administração</a></li>
-        <li style="float:right"><a href="./Pages/Design.html">Design</a></li>
-        <li style="float:right"><a href="./Pages/sobre.html">Sobre</a></li>
-        <li style="float:right"><a href="./Pages/contatos.html">Contatos</a></li>
-        <li style="float:right"><a class="active" href="./home.html">Home</a></li>
-        
-        
-        <li>
-            <div class="logo">
-                <img src="../assets/icone.jpg" alt="icone">
-                <h1>LUMINÁRIAS CURITIBA</h1>
-            </div>
-        </li>
+      <li style="float: right">
+        <a
+          href="./Pages/carrinho.html"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
+          <img class="carrinho" src="../assets/carrinho.png" alt="carrinho" />
+        </a>
+      </li>
+      <li style="float: right">
+        <a href="./admin/admin.html">Administração</a>
+      </li>
+      <li style="float: right"><a href="./Pages/Design.html">Design</a></li>
+      <li style="float: right"><a href="./Pages/sobre.html">Sobre</a></li>
+      <li style="float: right"><a href="./Pages/contatos.html">Contatos</a></li>
+      <li style="float: right">
+        <a class="active" href="./home.html">Home</a>
+      </li>
+
+      <li>
+        <div class="logo">
+          <img src="../assets/icone.jpg" alt="icone" />
+          <h1>LUMINÁRIAS CURITIBA</h1>
+        </div>
+      </li>
     </ul>
-    
-    <div style="display: flex;">
-        <div id="category-list"></div>
-        <div id="product-list"></div>
+
+    <div style="display: flex">
+      <div id="category-list"></div>
+      <div id="product-list"></div>
     </div>
-    
+
     <script>
-        function allowDrop(ev) {
-            ev.preventDefault();
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
+
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+
+        let carrinho = localStorage.getItem("carrinho");
+
+        if (carrinho) carrinho = JSON.parse(carrinho);
+        else carrinho = [];
+
+        const produto = {
+            id: ev.dataTransfer.getData("text"),
+            qtd: 1,
         }
 
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-
-            let carrinho = localStorage.getItem("carrinho")
-
-            if(carrinho) carrinho = JSON.parse(carrinho);
-            else carrinho = []
-
-            const produto = {
-                id: ev.dataTransfer.getData("text"),
-                qtd: 1,
+        let alreadyOnCart = false;
+        carrinho.forEach(element => {
+            if(element.id === produto.id) {
+                element.qtd += 1;
+                alreadyOnCart = true;
             }
+        })
 
-            let alreadyOnCart = false;
-            carrinho.forEach(element => {
-                if(element.id === produto.id) {
-                    element.qtd += 1;
-                    alreadyOnCart = true;
-                }
-            })
+        if(!alreadyOnCart) carrinho.push(produto)
 
-            if(!alreadyOnCart) carrinho.push(produto)
-
-            localStorage.setItem("carrinho", JSON.stringify(carrinho))
-        }
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      }
     </script>
     <script type="module" src="./scripts/home.js"></script>
-</body>
+  </body>
 </html>
