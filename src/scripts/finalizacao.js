@@ -11,12 +11,13 @@ async function addProductLine(atributeName, atributeContent, div) {
 }
 
 function createProductVisual(products, carrinho) {
+  var total = 0;
   products.map((product) => {
-    console.log(product);
     for (let element of carrinho) {
-      console.log(element);
       if (product.id === element.id) {
-        console.log(product.nome);
+        console.log(product.preco);
+        total += parseFloat(product.preco);
+        console.log(total);
         let list = document.getElementById("product-list");
         let productInfoDiv = document.createElement("div");
         productInfoDiv.classList = ["product-info"];
@@ -52,6 +53,7 @@ function createProductVisual(products, carrinho) {
       }
     }
   });
+  return total;
 }
 
 function main() {
@@ -62,9 +64,14 @@ function main() {
   // Faz a requisição para a API buscando a listagem de categorias
   executeAPI("produto", "listar")
     .then((result) => {
-      console.log("oi2");
       const products = result.dados;
-      createProductVisual(products, carrinho);
+      let total = createProductVisual(products, carrinho);
+      document.getElementById("total").innerHTML = parseFloat(
+        total
+      ).toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
     })
     .catch((error) => console.log(error));
 
@@ -105,9 +112,7 @@ document.getElementById("confirmar").addEventListener("click", () => {
 
       let carrinho = localStorage.getItem("carrinho");
       carrinho = JSON.parse(carrinho);
-      console.log("carrinho", carrinho);
       for (let produto of carrinho) {
-        console.log("aaa", produto);
         let fields = `pedido=${pedido.id}&produto=${produto.id}&qtd=${produto.qtd}`;
         executeAPI("item", "inserir", fields)
           .then((result) => {
