@@ -1,19 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
 }
 
 h1 {
-  font-family: "Arvo", serif;
+  font-family: 'Arvo', serif;
   color: #ff8c00;
   margin: 7px;
 }
 
 h2 {
-  font-family: "Arvo", serif;
+  font-family: 'Arvo', serif;
   font-style: italic;
   margin: 20px;
 }
@@ -45,7 +45,7 @@ input {
   border: 2px solid #ff8c00;
 }
 
-input[type="submit"] {
+input[type='submit'] {
   border: 2px solid #ff8c00 !important;
   background-color: #ff8c00 !important;
 }
@@ -83,7 +83,7 @@ a {
 }
 
 .avro {
-  font-family: "Arvo", serif;
+  font-family: 'Arvo', serif;
   margin-top: 13px !important;
 }
 
@@ -157,4 +157,19 @@ button {
   box-sizing: border-box;
   border: 2px solid #ff8c00;
   border-radius: 4px;
+}
+
+#submit-form {
+  width: 150px;
+  height: 30px;
+  background-color: #ffffff;
+  color: #ff8c00;
+  border: solid 2px #ff8c00;
+  font-weight: 700;
+}
+
+#submit-form:hover {
+  cursor: pointer;
+  background-color: #ff8c00;
+  color: #ffffff;
 }

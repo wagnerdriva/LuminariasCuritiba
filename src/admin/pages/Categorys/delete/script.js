@@ -58,7 +58,7 @@ function removeCategory(id) {
       console.log(error);
 
       let span = document.getElementById("message");
-      span.innerHTML = "Erro ao remover a categoria!";
+      span.innerHTML = "Erro ao remov er a categoria!";
     });
 }
 
