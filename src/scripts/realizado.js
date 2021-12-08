@@ -12,19 +12,13 @@ document.getElementById("pedido").innerHTML =
 let fields = `id=${pedido.id}`;
 
 document.getElementById("boleto").addEventListener("click", () => {
-  executeAPI("boleto", "listar", fields, false)
-    .then((result) => {
-      const winUrl = URL.createObjectURL(
-        new Blob([result], { type: "text/html" })
-      );
+  //window.open(`http://loja.buiar.com/?key=q3hfZsQuaw&f=json&c=boleto&t=listar&id=${pedido.id}`, '_blank').focus();
 
-      window.open(
-        winUrl,
-        "win",
-        `width=800,height=400,screenX=200,screenY=200`
-      );
-    })
-    .catch((error) => console.log(error));
+  window.open(
+    `http://loja.buiar.com/?key=q3hfZsQuaw&f=json&c=boleto&t=listar&id=${pedido.id}`,
+    "win",
+    `width=800,height=400,screenX=200,screenY=200`
+  );
 });
 
 localStorage.removeItem("carrinho");
