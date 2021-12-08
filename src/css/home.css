@@ -1,53 +1,59 @@
 #category-list {
-    margin: 30px;
-    padding: 10px;
-    width: 300px;
-    border: solid 2px #333;
-    height: 40vh;
+  margin: 30px;
+  padding: 10px;
+  width: 300px;
+  border: solid 2px #333;
+  height: 40vh;
 }
 
 .atribute-title {
-    font-family: 'Arvo', serif;
-    font-weight: 600;
-    color: #ff8c00;
+  font-family: 'Arvo', serif;
+  font-weight: 600;
+  color: #ff8c00;
 }
 
 .atribute-title:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #product-list {
-    border: solid 2px #333;
-    margin: 30px;
-    padding: 10px;
+  border: solid 2px #333;
+  margin: 30px;
+  padding: 10px;
 }
 
 .product {
-    display: flex;
-    margin: 20px;
-    padding: 10px;
-    width: 500px;
-    border: solid 2px #dcdcdc;
+  display: flex;
+  margin: 20px;
+  padding: 10px;
+  width: 500px;
+  border: solid 2px #dcdcdc;
 }
 
 .product-info {
-    width: 300px;
-    text-align: justify;
+  width: 300px;
+  text-align: justify;
 }
 
 .atribute-title {
-    font-family: 'Arvo', serif;
-    font-weight: 700;
-    color: #ff8c00;
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  color: #ff8c00;
 }
 
 .atribute {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 }
 
-.product  img {
-    height: 150px;
-    margin-top: 20px;
-    margin-left: 40px;
+.product img {
+  height: 150px;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+#order-list {
+  border: solid 2px #333;
+  margin: 30px;
+  padding: 10px;
 }
