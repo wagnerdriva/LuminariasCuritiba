@@ -27,7 +27,7 @@ function createCategoriesVisual(categories) {
     });
 }
 
-function listProducts(categoryID) {
+function listProducts(categoryID, allProducts = false) {
     async function addProductLine(atributeName, atributeContent, div) {
         let textElement = document.createElement('p')
         let strongElement = document.createElement('span')
@@ -45,7 +45,7 @@ function listProducts(categoryID) {
 
     function createProductVisual(products) {
         products.map((product) => {
-            if (product.categoria === categoryID) {
+            if (product.categoria === categoryID || allProducts) {
                 let list = document.getElementById('product-list');
                 let productInfoDiv = document.createElement('div')
                 productInfoDiv.classList = ["product-info"]
@@ -85,7 +85,31 @@ function listProducts(categoryID) {
         .catch((error) => console.log(error))
 }
 
+function refreshProductQuantity(){
+    let qtdProducts = document.getElementById('qtd-products');
+
+    let carrinho = localStorage.getItem('carrinho');
+    
+    if(carrinho){
+        carrinho = JSON.parse(carrinho);
+
+        let totalProducts = 0;
+        carrinho.forEach(element => {
+          totalProducts += element.qtd;
+        })
+
+        qtdProducts.innerHTML = "";
+        let textnode = document.createTextNode(`${totalProducts}`);
+        qtdProducts.appendChild(textnode);
+    }
+
+}
+
 function main() {
+    listProducts('', true);
+
+    refreshProductQuantity();
+
     // Faz a requisição para a API buscando a listagem de categorias
     executeAPI("categoria", "listar")
         .then((result) => {
@@ -101,7 +125,8 @@ function main() {
                     let list = document.getElementById('product-list');
                     list.innerHTML = "";
 
-                    listProducts(element.id);
+                    if(element.id === '000') listProducts('', true)
+                    else listProducts(element.id);
                 });
             }
         })

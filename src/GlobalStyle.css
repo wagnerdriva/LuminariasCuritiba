@@ -146,7 +146,21 @@ a {
 }
 
 .carrinho {
-  height: 18px;
+  margin: 0;
+  padding: 0 !important;
+  display: flex;
+}
+
+.carrinho img {
+  height: 34px;
+  padding-right: 5px;
+  padding-top: 5px;
+}
+
+#qtd-products {
+  font-size: 14px;
+  margin: 30px 0px 0px 0px;
+  float: left;
 }
 
 button {
@@ -165,15 +179,35 @@ button {
 
 #submit-form {
   width: 150px;
-  height: 30px;
-  background-color: #ffffff;
+  height: 46px;
+  background-color: #ffffff !important;
   color: #ff8c00;
-  border: solid 2px #ff8c00;
+  border: solid 2px #ff8c00 !important;
   font-weight: 700;
+  padding: 5px;
 }
 
 #submit-form:hover {
   cursor: pointer;
-  background-color: #ff8c00;
-  color: #ffffff;
+  background-color: #ff8c00 !important;
+  color: #ffffff !important;
+}
+
+.btn-delete {
+  padding: 0 !important;
+  font-size: 12px;
+  width: 70px;
+  height: 30px;
+  background-color: #ffffff !important;
+  color: #ff8c00;
+  border: solid 2px #ff8c00 !important;
+  font-weight: 700;
+  padding: 5px;
+}
+
+.btn-delete:hover {
+  cursor: pointer;
+  padding: 0 !important;
+  background-color: #ff8c00 !important;
+  color: #ffffff !important;
 }

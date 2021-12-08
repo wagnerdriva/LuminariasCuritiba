@@ -12,13 +12,14 @@
   <body>
     <ul class="navbar">
       <li style="float: right">
-        <a
+        <a class="carrinho"
           href="./Pages/carrinho.html"
           ondrop="drop(event)"
           ondragover="allowDrop(event)"
         >
-          <img class="carrinho" src="../assets/carrinho.png" alt="carrinho" />
-        </a>
+          <img  src="../assets/carrinho.png" alt="carrinho" />
+          <p id="qtd-products"></p>
+      </a>
       </li>
       <li style="float: right">
         <a href="./admin/admin.html">Administração</a>
@@ -40,7 +41,9 @@
     </ul>
 
     <div style="display: flex">
-      <div id="category-list"></div>
+      <div id="category-list">
+        <div class="category"><p id="000" class="atribute-title">Todas Categorias</p></div>
+      </div>
       <div id="product-list"></div>
     </div>
 
@@ -74,6 +77,17 @@
         if(!alreadyOnCart) carrinho.push(produto)
 
         localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+        let totalProducts = 0;
+        carrinho.forEach(element => {
+          totalProducts += element.qtd;
+        })
+
+        let qtdProducts = document.getElementById('qtd-products');
+        qtdProducts.innerHTML = "";
+        let textnode = document.createTextNode(`${totalProducts}`);
+        qtdProducts.appendChild(textnode);
+
       }
     </script>
     <script type="module" src="./scripts/home.js"></script>

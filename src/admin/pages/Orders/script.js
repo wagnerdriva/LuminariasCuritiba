@@ -40,11 +40,11 @@ async function createList() {
     addOrderLine("CPF", order.cpf, orderInfoDiv);
     addOrderLine("CEP", order.cep, orderInfoDiv);
     addOrderLine("RUA", order.rua, orderInfoDiv);
-    addOrderLine("Número", order.number, orderInfoDiv);
+    addOrderLine("Número", order.numero, orderInfoDiv);
     addOrderLine("Complemento", order.complemento, orderInfoDiv);
     addOrderLine("Bairro", order.bairro, orderInfoDiv);
-    addOrderLine("Cidade", order.id, orderInfoDiv);
-    addOrderLine("Estado", order.id, orderInfoDiv);
+    addOrderLine("Cidade", order.cidade, orderInfoDiv);
+    addOrderLine("Estado", order.uf, orderInfoDiv);
 
 
     let orderDiv = document.createElement("div");
